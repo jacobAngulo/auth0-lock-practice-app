@@ -1,24 +1,20 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import Auth0Lock from "auth0-lock";
+
+const lock = new Auth0Lock("YOUR_CLIENT_ID", "YOUR_DOMAIN", {
+  auth: {
+    redirectUrl: "https://flamboyant-mcclintock-855856.netlify.com/",
+    responseType: "code",
+    params: {
+      scope: "openid email" // Learn about scopes: https://auth0.com/docs/scopes
+    }
+  }
+});
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <button onClick={lock.show}>auth0 lock</button>
     </div>
   );
 }
